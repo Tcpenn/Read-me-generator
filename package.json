@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.1.2"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,8 +20,5 @@
   "bugs": {
     "url": "https://github.com/Tcpenn/Read-me-generator/issues"
   },
-  "homepage": "https://github.com/Tcpenn/Read-me-generator#readme",
-  "dependencies": {
-    "inquirer": "^8.1.2"
-  }
+  "homepage": "https://github.com/Tcpenn/Read-me-generator#readme"
 }
