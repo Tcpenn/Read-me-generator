@@ -26,7 +26,7 @@ ${instillation}
 const testsTOC = tests => {
   if (tests) {
     return `
-    *[Tests](#tests)`;
+* [Tests](#tests)`;
   } else {
     return '';
   }
@@ -35,26 +35,21 @@ const testsTOC = tests => {
 const generateTests = tests => {
   if (tests) {
     return `
-    ## Tests
+## Tests
     
-    ${tests}  `
-  }
-}
-
-//license
-const licenseTOC = (license, licenseOther) => {
-  if (license !== 'No license') {
-    return `
-    *[License](#license)`;
+${tests}  
+`;
   } else {
     return '';
   }
 };
 
+
+
 const creditsTOC = credits => {
   if(credits) {
   return `
-  *[Credits(#credits)
+* [credits(#credits)
     `;
   } else {
     return '';
@@ -64,10 +59,20 @@ const creditsTOC = credits => {
 const generateCredits = credits => {
   if (credits) {
     return`
-    ##Credits
+## Credits
 
-    ${credits.replace(/,/g, `
+${credits.replace(/,/g, `
     `)}`;
+  } else {
+    return '';
+  }
+};
+
+//license
+const licenseTOC = license => {
+  if (license !== 'No license') {
+    return `
+* [License](#license)`;
   } else {
     return '';
   }
@@ -79,7 +84,7 @@ const renderLicenseBadge = (license, licenseOther) => {
   if (license === 'Other') {
     const licenseStr = licenseOther.replace(/ /g, '_')
     return `
-    ![${licenseOther} license]((https://img.shields.io/badge/license-${licenseStr}-green)
+![${licenseOther} license]((https://img.shields.io/badge/license-${licenseStr}-green)
     `
 
 
@@ -87,7 +92,7 @@ const renderLicenseBadge = (license, licenseOther) => {
   } else if (license !== 'No license'){
     const licenseStr = license.replace(/ /g, '_');
     return `
-    ![${license}](https://img.shields.io/badge/license-${licenseStr}-green)
+![${license}](https://img.shields.io/badge/license-${licenseStr}-green)
     `;
   } else {
    
@@ -103,29 +108,26 @@ const renderLicenseBadge = (license, licenseOther) => {
 const generateLicenseLink = (license, licenseOther) => {
   if (license === 'Other'){
   return `
-  ## License
-  ${licenseOther}
-  `;
+## License
+  ${licenseOther}`;
+  
     } else if (license === 'Apache License 2.0') {
     return `
-    ## License
-    [${license}](https://choosealicense.com/licenses/apache-2.0/)
-    `;
+## License
+[${license}](https://choosealicense.com/licenses/apache-2.0/)`;
   
   } else if (license === 'GNU GPLv3'){
     return `
-    ## License
-    [${license}](https://https://choosealicense.com/licenses/gpl-3.0/)
-    `;
+## License
+[${license}](https://https://choosealicense.com/licenses/gpl-3.0/)`;
   } else if (license === 'ISC') {
     return`
-    ## License 
-    [${license}](https://choosealicense.com/licenses/isc/)
-    `;
+## License 
+[${license}](https://choosealicense.com/licenses/isc/)`;
   } else if (license === 'MIT') {
     return `
-    ## License
-    [${license}](https://choosealicense.com/licenses/mit/)
+## License
+[${license}](https://choosealicense.com/licenses/mit/)
     `;
   } else if (license === 'No license') {
     return'';
@@ -137,37 +139,37 @@ const generateLicenseLink = (license, licenseOther) => {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
-  # ${data.title}
+# ${data.title}
 
-  ${renderLicenseBadge(data.license, data.licenseOther)}
+${renderLicenseBadge(data.license, data.licenseOther)}
 
-  ##Description
-  ${data.description}
+## Description
+${data.description}
 
-  ## Table of Contents
+## Table of Contents
 
-  ${instillationTOC(data.instillation)}
+${instillationTOC(data.instillation)}
 
-  * [Usage](#usage)${licenseTOC(data.license)}${creditsTOC(data.credits)}
-  * [Authors](#authors)${testsTOC(data.tests)}
-  * [Questions](#questions)
+* [Usage](#usage)${licenseTOC(data.license)}${creditsTOC(data.credits)}
+* [Authors](#authors)${testsTOC(data.tests)}
+* [Questions](#questions)
   
-  ${generateInstillation(data.instillation)}
-  ## Usage
+${generateInstillation(data.instillation)}
+## Usage
 
-  ${data.usage}${generateLicenseLink(data.license, data.licenseOther)}${generateCredits(data.credits)}
-  ## Authors
+${data.usage}${generateLicenseLink(data.license, data.licenseOther)}${generateCredits(data.credits)}
+## Authors
 
-  ${data.authors.replace(/, /g, `  
-  `)}
-  ${generateTests(data.tests)}
-  ## Questions
+${data.authors.replace(/, /g, `  
+`)}
+${generateTests(data.tests)}
+## Questions
 
-  Please reach out of you have any additional questions!
+Please reach out of you have any additional questions!
 
-  * [GitHub](https://github.com/${data.githubUsername})
-  * [Email](mailto:${data.email})
-  `
+* [GitHub](https://github.com/${data.githubUsername})
+* [Email](mailto:${data.email})
+`
   };
 
 module.exports = generateMarkdown;
